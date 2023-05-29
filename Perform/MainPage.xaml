@@ -5,10 +5,20 @@
              >
 
     <ScrollView >
+        <ScrollView.Background>
+            <!-- StartPoint defaults to (0,0) -->
+            <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Color="AntiqueWhite"
+                                        Offset="0.4" />
+                <GradientStop Color="#FC0816"
+                                        Offset="1.0" />
+            </LinearGradientBrush>
+        </ScrollView.Background>
         <VerticalStackLayout
             Spacing="20"
             Padding="10,0"
             VerticalOptions="Start">
+                  
             <Label x:Name="lblHello"
                 Text="Hello, fellow orderpicker!"
                 SemanticProperties.HeadingLevel="Level1"
@@ -17,7 +27,7 @@
                 VerticalOptions="Start"
                 />
             <Label 
-                x:Name="lblEnterLogin" Text="Enter your login"
+                   x:Name="lblEnterLogin" Text="Enter your login"
                    FontSize="18"/>
             <Entry Placeholder="ie. as John Smith enter jsmith"
                    Keyboard="Text"
@@ -29,10 +39,11 @@
             <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
                                HorizontalOptions="Center"/>
 
-            <TableView x:Name ="tableView" Intent="Data">
+           
+                <TableView x:Name ="tableView" Intent="Data">
 
-            </TableView>
-
+                </TableView>
+            
 
         </VerticalStackLayout>
     </ScrollView>
