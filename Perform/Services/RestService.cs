@@ -24,10 +24,13 @@ namespace Perform.Services
         {
             Items = new List<string[]>();
 
-            Uri uri = new Uri("http://10.0.2.2:7051/output.csv"); // replace with your Blazor server's URL
+            Uri uri = new Uri("http://gperform.azurewebsites.net/output.csv"); // replace with your Blazor server's URL
             try
             {
-                HttpResponseMessage response = await _client.GetAsync(uri);
+                var request = new HttpRequestMessage(HttpMethod.Get, uri);
+                request.Headers.ConnectionClose = true; // This disables Keep-Alive
+
+                HttpResponseMessage response = await _client.SendAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
@@ -41,6 +44,7 @@ namespace Perform.Services
 
             return Items;
         }
+
     }
 
 }

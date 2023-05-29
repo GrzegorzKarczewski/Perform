@@ -9,7 +9,7 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         viewModel = new CsvDataViewModel();
-        LoadDataAsync();
+
     }
 
 
@@ -23,14 +23,43 @@ public partial class MainPage : ContentPage
         foreach (var row in viewModel.Rows)
         {
             var tableSection = new TableSection();
+            tableSection.Title = "Your Performace:";
+            tableSection.TextColor = Colors.Black;
             foreach (var column in row)
             {
-                tableSection.Add(new TextCell { Text = $"{column.Key}: {column.Value}" });
+                if (column.Key == "Naam_Medewerker" || column.Key == "Colli_Gem_Colli_Per_Uur")
+                {
+                    if (column.Value.ToUpper() == entryName.ToString())
+                    {
+                        tableSection.Add(new TextCell
+                        {
+                            Text = $"{column.Key}: {column.Value}",
+                            TextColor = Colors.Black
+
+                        });
+                    }
+                }
             }
 
             tableView.Root.Add(tableSection);
         }
+
     }
 
+    private void Entry_Completed(object sender, EventArgs e)
+    {
+        lblHello.Text = $"Hi {entryName.Text}";
+        entryName.IsVisible = false;
+        entryName.Text.ToUpper();
+        lblEnterLogin.IsVisible = false;
+
+        LoadDataAsync();
+        // loadingUserData.IsVisible = false;
+    }
+
+    private void EntryName_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        // loadingUserData.IsVisible = true;
+    }
 }
 

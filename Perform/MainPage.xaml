@@ -1,28 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Perform.MainPage">
+             x:Class="Perform.MainPage"
+             >
 
-    <ScrollView>
+    <ScrollView >
         <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
+            Spacing="20"
+            Padding="10,0"
+            VerticalOptions="Start">
+            <Label x:Name="lblHello"
+                Text="Hello, fellow orderpicker!"
                 SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                FontSize="24"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                />
+            <Label 
+                x:Name="lblEnterLogin" Text="Enter your login"
+                   FontSize="18"/>
+            <Entry Placeholder="ie. as John Smith enter jsmith"
+                   Keyboard="Text"
+                   PlaceholderColor="DarkSlateGrey"
+                   Completed="Entry_Completed"
+                   TextChanged="EntryName_TextChanged"
+                   x:Name="entryName"
+                   />
+            <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
+                               HorizontalOptions="Center"/>
 
             <TableView x:Name ="tableView" Intent="Data">
-              
+
             </TableView>
 
 
