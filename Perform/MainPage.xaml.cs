@@ -51,6 +51,7 @@ public partial class MainPage : ContentPage
 
                 tableSection.Add(new TextCell
                 {
+
                     Text = currentName,
                     TextColor = Colors.Black,
 
@@ -84,6 +85,7 @@ public partial class MainPage : ContentPage
         LoadDataAsync();
         entryName.IsVisible = false;
         tableView.Focus();
+
 #if ANDROID
         var imm = (Android.Views.InputMethods.InputMethodManager)MauiApplication.Current.GetSystemService(Android.Content.Context.InputMethodService);
 
@@ -95,11 +97,18 @@ public partial class MainPage : ContentPage
             imm.HideSoftInputFromWindow(wToken, 0);
         }
 #endif
+        btnRefresh.IsVisible = true;
+
     }
 
     private void EntryName_TextChanged(object sender, TextChangedEventArgs e)
     {
         loadingUserData.IsVisible = true;
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+
     }
 }
 

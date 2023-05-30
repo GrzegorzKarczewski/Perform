@@ -8,8 +8,8 @@
         <ScrollView.Background>
             <!-- StartPoint defaults to (0,0) -->
             <LinearGradientBrush EndPoint="0,1">
-                <GradientStop Color="AntiqueWhite"
-                                        Offset="0.4" />
+                <GradientStop Color="White"
+                                        Offset="0.6" />
                 <GradientStop Color="#FC0816"
                                         Offset="1.0" />
             </LinearGradientBrush>
@@ -25,6 +25,7 @@
                 FontSize="24"
                 HorizontalOptions="Center"
                 VerticalOptions="Start"
+                TextColor="Black"
                 />
             <Label 
                    x:Name="lblEnterLogin" Text="Enter your login"
@@ -35,17 +36,30 @@
                    Completed="Entry_Completed"
                    TextChanged="EntryName_TextChanged"
                    x:Name="entryName"
+                   
                    />
             <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
                                HorizontalOptions="Center"/>
 
            
-                <TableView x:Name ="tableView" Intent="Data">
+                <TableView x:Name ="tableView" Intent="Data"
+                           >
+                <TableSection>
+                    <TextCell TextColor="black"/>
+                </TableSection>
+                    
 
                 </TableView>
-            
+            <Button x:Name="btnRefresh" Text="Refresh" Clicked="Button_Clicked"
+                    BorderColor="DarkSlateGrey" IsVisible="false"
+                    HorizontalOptions="Center"
+                    />
+            <Image Source="Resources/Splash/splash.svg"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="Center"/>
 
         </VerticalStackLayout>
+               
     </ScrollView>
 
 </ContentPage>
