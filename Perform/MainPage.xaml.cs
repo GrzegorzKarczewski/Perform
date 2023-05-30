@@ -21,6 +21,7 @@ public partial class MainPage : ContentPage
     }
     private void LoadDataIntoTable()
     {
+        tableView.Root.Clear();
         foreach (var row in viewModel.Rows)
         {
             string currentName = null;
@@ -82,7 +83,10 @@ public partial class MainPage : ContentPage
         CurrentName = entryName.Text.ToUpper();
         lblEnterLogin.IsVisible = false;
         loadingUserData.IsVisible = true;
+
+        // Load user data
         LoadDataAsync();
+
         entryName.IsVisible = false;
         tableView.Focus();
 
@@ -97,6 +101,8 @@ public partial class MainPage : ContentPage
             imm.HideSoftInputFromWindow(wToken, 0);
         }
 #endif
+        // Show the Back button
+        btnBack.IsVisible = true;
         btnRefresh.IsVisible = true;
 
     }
@@ -108,7 +114,32 @@ public partial class MainPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
+        LoadDataAsync();
+    }
 
+    private void btnBack_Clicked(object sender, EventArgs e)
+    {
+        // Reset your user interface and data here
+        // Set the Entry to be visible and clear its text
+        entryName.IsVisible = true;
+        entryName.Text = string.Empty;
+
+        // Hide lblHello and loadingUserData
+        lblHello.IsVisible = false;
+        loadingUserData.IsVisible = false;
+
+        // Hide the Refresh button
+        btnRefresh.IsVisible = false;
+
+        // Clear the TableView
+        tableView.Root.Clear();
+
+        // Show the initial Label texts
+        lblHello.Text = "Hello, fellow orderpicker!";
+        lblEnterLogin.IsVisible = true;
+
+        // Hide the Back button
+        btnBack.IsVisible = false;
     }
 }
 

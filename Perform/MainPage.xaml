@@ -27,6 +27,9 @@
                 VerticalOptions="Start"
                 TextColor="Black"
                 />
+            <Button x:Name="btnBack" Text="Back" Clicked="btnBack_Clicked"
+                BorderColor="DarkSlateGrey" IsVisible="false"
+                HorizontalOptions="Center" />
             <Label 
                    x:Name="lblEnterLogin" Text="Enter your login"
                    FontSize="18"/>
