@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Perform.DataPage"
+             Title=" Your Performance">
+  
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <ScrollView.Background>
+                <!-- StartPoint defaults to (0,0) -->
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0.6" />
+                    <GradientStop Color="#FC0816" Offset="1.0" />
+                </LinearGradientBrush>
+            </ScrollView.Background>
+            <VerticalStackLayout Spacing="20" Padding="10,0" VerticalOptions="Start">
+
+                <TableView x:Name ="tableView" Intent="Data"
+                           >
+                    <TableSection>
+                        <TextCell TextColor="black"/>
+                    </TableSection>
+
+
+                </TableView>
+                <Button x:Name="btnRefresh" Text="Refresh" Clicked="Button_Clicked"
+                    BorderColor="DarkSlateGrey" IsVisible="false"
+                    HorizontalOptions="Center"
+                    />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Image Grid.Row="1" Source="Resources/Splash/splash.svg"
+               VerticalOptions="End" HorizontalOptions="Center"/>
+    </Grid>
+
+</ContentPage>
