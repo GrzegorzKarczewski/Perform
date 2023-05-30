@@ -37,30 +37,16 @@ public partial class MainPage : ContentPage
         loadingUserData.IsVisible = true;
     }
 
-
-    private void btnBack_Clicked(object sender, EventArgs e)
+    protected override async void OnAppearing()
     {
-        //// Reset your user interface and data here
-        //// Set the Entry to be visible and clear its text
-        //entryName.IsVisible = true;
-        //entryName.Text = string.Empty;
+        base.OnAppearing();
 
-        //// Hide lblHello and loadingUserData
-        //lblHello.IsVisible = false;
-        //loadingUserData.IsVisible = false;
+        // Initial state (invisible)
+        lblHello.Opacity = 0;
 
-        //// Hide the Refresh button
-        //// btnRefresh.IsVisible = false;
-
-        //// Clear the TableView
-        //// tableView.Root.Clear();
-
-        //// Show the initial Label texts
-        //lblHello.Text = "Hello, fellow orderpicker!";
-        //lblEnterLogin.IsVisible = true;
-
-        //// Hide the Back button
-        //btnBack.IsVisible = false;
+        // Animation (fade in)
+        await lblHello.FadeTo(1, 2000); // parameters: target opacity, duration (milliseconds)
     }
+
 }
 

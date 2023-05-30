@@ -17,17 +17,30 @@ public partial class DataPage : ContentPage
     private async void LoadDataAsync()
     {
         await viewModel.LoadDataAsync();
-        LoadDataIntoTable();
+
+        if (IsUserFound())
+        {
+            LoadDataIntoTable();
+        }
+        else
+        {
+            await DisplayAlert("User not found", $"Name {CurrentName} couldn't be found in the system. Contact teamleader for your name", "OK");
+            await Navigation.PopAsync();
+        }
     }
     private void LoadDataIntoTable()
     {
         tableView.Root.Clear();
+
+        // Iterate over each row in the data
         foreach (var row in viewModel.Rows)
         {
             string currentName = null;
             string colliValue = null;
             string totalcollies = null;
+            string lastOrder = null;
 
+            // Iterate over each column in the row
             foreach (var column in row)
             {
                 if (column.Key == "Naam_Medewerker" && column.Value.ToUpper() == CurrentName)
@@ -42,12 +55,16 @@ public partial class DataPage : ContentPage
                 {
                     totalcollies = $"You've picked {column.Value} colli ";
                 }
+                else if (column.Key == "Tijd_Laatst_Gedane_Taak")
+                {
+                    lastOrder = column.Value;
+                }
             }
-
-            if (currentName != null && colliValue != null && totalcollies != null)
+            // If all necessary data is found, create a new TableSection and add it to the table
+            if (currentName != null && colliValue != null && totalcollies != null && lastOrder != null)
             {
                 var tableSection = new TableSection();
-                tableSection.Title = "Your latest Performance:";
+                tableSection.Title = $"Your latest Performance: {lastOrder}";
                 tableSection.TextColor = Colors.Black;
 
                 tableSection.Add(new TextCell
@@ -70,13 +87,29 @@ public partial class DataPage : ContentPage
                 });
                 tableView.Root.Add(tableSection);
             }
+
         }
 
+        btnRefresh.IsVisible = true;
+    }
+    private bool IsUserFound()
+    {
+        foreach (var row in viewModel.Rows)
+        {
+            foreach (var column in row)
+            {
+                if (column.Key == "Naam_Medewerker" && column.Value.ToUpper() == CurrentName)
+                {
+                    return true;
+                }
+            }
+        }
 
+        return false;
     }
 
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private void ButtonRefresh_Clicked(object sender, EventArgs e)
     {
         LoadDataAsync();
     }

@@ -2,56 +2,68 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Perform.MainPage">
+    <ContentPage.Background>
+        <Color>#FC0816</Color>
+    </ContentPage.Background>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ScrollView Grid.Row="0">
-            <ScrollView.Background>
+
+        <Frame Grid.Row="0" Grid.RowSpan="2" 
+               CornerRadius="20" Padding="0" 
+               HasShadow="true" BackgroundColor="Transparent">
+            <Frame.Background>
                 <!-- StartPoint defaults to (0,0) -->
                 <LinearGradientBrush EndPoint="0,1">
-                    <GradientStop Color="White" Offset="0.6" />
+                    <GradientStop Color="White" Offset="0.7" />
                     <GradientStop Color="#FC0816" Offset="1.0" />
                 </LinearGradientBrush>
-            </ScrollView.Background>
-            <VerticalStackLayout Spacing="20" Padding="10,0" VerticalOptions="Start">
+            </Frame.Background>
 
-                <Label x:Name="lblHello"
-                Text="Hello, fellow orderpicker!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center"
-                VerticalOptions="Start"
-                TextColor="Black"
-                FontAttributes="Bold"
-                />
-                <Label x:Name="lblEnterLogin" Text="Enter your login"
+                <VerticalStackLayout Spacing="10" Padding="0,0"  VerticalOptions="Start" Margin="0,20,0,0">
+                    <Frame CornerRadius="20" Padding="0,20,0,20" Margin="5"
+                             HasShadow="true" BackgroundColor="Transparent">
+                        <Label x:Name="lblHello"
+                           Text="Hello, orderpicker!"
+                           SemanticProperties.HeadingLevel="Level1"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           VerticalOptions="StartAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Padding="0,0,0,0"
+                         
+                      
+                    />
+                    </Frame>
+                    <Label x:Name="lblEnterLogin" Text="Enter your login"
                    FontSize="20"
                    TextColor="DarkSlateGrey"
                    FontAttributes="Italic"
                    />
 
-                <Entry Placeholder="ie. as John Smith enter jsmith"
-                   Keyboard="Text"
-                   PlaceholderColor="DarkSlateGrey"
-                   Completed="Entry_Completed"
-                   TextChanged="EntryName_TextChanged"
-                   x:Name="entryName"
-                   BackgroundColor="LightGray"
-                   FontSize="18"
-                   />
+                    <Frame BackgroundColor="LightGray" Padding="0" CornerRadius="20">
+                        <Entry Placeholder="ie. as John Smith enter jsmith"
+                           Keyboard="Text"
+                           PlaceholderColor="DarkSlateGrey"
+                           Completed="Entry_Completed"
+                           TextChanged="EntryName_TextChanged"
+                           x:Name="entryName"
+                           BackgroundColor="Transparent"/>
+                    </Frame>
 
-                <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
+                    <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
                                HorizontalOptions="Center"
                                Color="Black"/>
 
-
-            </VerticalStackLayout>
-        </ScrollView>
-
+                </VerticalStackLayout>
+        </Frame>
         <Image Grid.Row="1" Source="Resources/Splash/splash.svg"
                VerticalOptions="End" HorizontalOptions="Center"/>
+      
     </Grid>
 
 
