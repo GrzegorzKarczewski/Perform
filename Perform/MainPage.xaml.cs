@@ -14,7 +14,18 @@ public partial class MainPage : ContentPage
 
         CurrentName = entryName.Text.ToUpper();
         // Navigation occurs here, passing the name to the second page
+        NetworkAccess accessType = Connectivity.Current.NetworkAccess;
+
+        //if (accessType == NetworkAccess.Internet)
+        //{
+        //    // Connection to internet is available
         Navigation.PushAsync(new DataPage(CurrentName));
+
+        //}
+        //else
+        //{
+        //     DisplayAlert("No internet Access", "Turn on your internet acess", "Got it!");
+        //}
 
 
 

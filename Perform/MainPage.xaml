@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Perform.MainPage">
+             x:Class="Perform.MainPage"
+             Title="Performer v0.1"
+             >
     <ContentPage.Background>
-        <Color>#FC0816</Color>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#FC0816" Offset="0.1" />
+            <GradientStop Color="white" Offset="1.0" />
+        </LinearGradientBrush>
     </ContentPage.Background>
 
     <Grid>
@@ -14,7 +19,9 @@
 
         <Frame Grid.Row="0" Grid.RowSpan="2" 
                CornerRadius="20" Padding="0" 
-               HasShadow="true" BackgroundColor="Transparent">
+               HasShadow="true" BackgroundColor="Transparent"
+               Margin="5,0,5,0"
+               BorderColor="DarkSlateGrey">
             <Frame.Background>
                 <!-- StartPoint defaults to (0,0) -->
                 <LinearGradientBrush EndPoint="0,1">
@@ -23,7 +30,7 @@
                 </LinearGradientBrush>
             </Frame.Background>
 
-                <VerticalStackLayout Spacing="10" Padding="0,0"  VerticalOptions="Start" Margin="0,20,0,0">
+                <VerticalStackLayout Spacing="10" Padding="0,0"  VerticalOptions="Start" Margin="5,20,5,0">
                     <Frame CornerRadius="20" Padding="0,20,0,20" Margin="5"
                              HasShadow="true" BackgroundColor="Transparent">
                         <Label x:Name="lblHello"
@@ -52,6 +59,7 @@
                            Completed="Entry_Completed"
                            TextChanged="EntryName_TextChanged"
                            x:Name="entryName"
+                           TextColor="black"
                            BackgroundColor="Transparent"/>
                     </Frame>
 

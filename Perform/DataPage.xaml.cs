@@ -20,7 +20,21 @@ public partial class DataPage : ContentPage
 
         if (IsUserFound())
         {
-            LoadDataIntoTable();
+            // Here we are checking if worker had norm higher or equal than expected
+            Int32 score = LoadDataIntoTable();
+            await DisplayAlert("Performance", $"Your performance is : {score}", "OK");
+            if (score >= 160)
+            {
+                lblGoodJob.IsVisible = true;
+                lblShy.IsVisible = false;
+                frameSummary.BackgroundColor = Colors.LightGreen;
+            }
+            else
+            {
+                lblCanDoBetter.IsVisible = true;
+                lblShy.IsVisible = true;
+
+            }
         }
         else
         {
@@ -28,8 +42,11 @@ public partial class DataPage : ContentPage
             await Navigation.PopAsync();
         }
     }
-    private void LoadDataIntoTable()
+    private Int32 LoadDataIntoTable()
     {
+        Int32 performance = 0;
+        string performanceValue = null;
+
         tableView.Root.Clear();
 
         // Iterate over each row in the data
@@ -50,6 +67,7 @@ public partial class DataPage : ContentPage
                 else if (column.Key == "Colli_Gem_Colli_Per_Uur")
                 {
                     colliValue = $"Performance: {column.Value} colli/hr";
+                    performanceValue = column.Value;
                 }
                 else if (column.Key == "Totaal_Colli_Gedaan")
                 {
@@ -87,10 +105,19 @@ public partial class DataPage : ContentPage
                 });
                 tableView.Root.Add(tableSection);
             }
-
         }
 
         btnRefresh.IsVisible = true;
+
+        if (performanceValue != null)
+        {
+            bool success = Int32.TryParse(performanceValue, out performance);
+            if (!success)
+            {
+                DisplayAlert("Problem", $"Problem with performance value: {performance}", "OK");
+            }
+        }
+        return performance;
     }
     private bool IsUserFound()
     {
