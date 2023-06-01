@@ -74,11 +74,18 @@
                        HorizontalOptions="Center"
                        FontSize="Medium"/>
 
-                <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
+            
+                    <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
                                HorizontalOptions="Center"
-                               Color="Black"/>
-
-                </VerticalStackLayout>
+                               Color="#FC0816"/>
+                    <Label x:Name ="lblSearching" 
+                           Text="Searching.." 
+                           HorizontalOptions="Center" 
+                           IsVisible="false"
+                           FontSize="Medium"
+                           />
+                
+            </VerticalStackLayout>
         </Frame>
         <Image Grid.Row="1" Source="Resources/Splash/splash.svg"
                VerticalOptions="End" HorizontalOptions="Center"/>

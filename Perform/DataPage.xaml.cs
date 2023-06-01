@@ -17,6 +17,8 @@ public partial class DataPage : ContentPage
     }
     private async void LoadDataAsync()
     {
+        AI_tableNotLoaded.IsRunning = true;
+        AI_tableNotLoaded.IsVisible = true;
         await viewModel.LoadDataAsync();
 
         if (IsUserFound())
@@ -42,6 +44,8 @@ public partial class DataPage : ContentPage
             await DisplayAlert("User not found", $"Name {CurrentName} couldn't be found in the system. Contact teamleader for your name", "OK");
             await Navigation.PopAsync();
         }
+        AI_tableNotLoaded.IsRunning = false;
+        AI_tableNotLoaded.IsVisible = false;
     }
     private int LoadDataIntoTable()
     {

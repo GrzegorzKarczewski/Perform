@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Perform.DataPage"
              Title="Your Performance"
+             
              >
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
@@ -37,6 +38,14 @@
                             </TableSection>
                         </TableView>
                     </Frame>
+                    <ActivityIndicator x:Name="AI_tableNotLoaded" IsRunning="false" IsVisible="false"
+                                       Color="#FC0816"/>
+                    <Label x:Name ="lblSearching" Text="Loading.. Please wait" 
+                           HorizontalOptions="Center" 
+                           IsVisible="false"
+                           FontSize="Medium"
+                           />
+
 
                     <Frame x:Name="frameSummary" 
                             BorderColor="Gray"
@@ -50,9 +59,17 @@
                             <BoxView Color="Gray"
                                  HeightRequest="2"
                                  HorizontalOptions="Fill" />
-                            <Label x:Name="lblGoodJob" Text="You're doing good job today!" TextColor="Black" IsVisible="false"/>
-                            <Label x:Name="lblCanDoBetter"  Text="Today is not your best day, contact team leaders if you experience any issues!" TextColor="Black" IsVisible="false"/>
-                            <Label x:Name="lblShy" Text="Don't be shy and always ask for help!" TextColor="black"/>
+                            <Label x:Name="lblGoodJob" 
+                                   Text="You're doing good job today!" 
+                                   TextColor="Black" 
+                                   IsVisible="false"/>
+                            <Label x:Name="lblCanDoBetter"
+                                   Text="Today is not your best day, contact team leaders if you experience any issues!" 
+                                   TextColor="Black" 
+                                   IsVisible="false"/>
+                            <Label x:Name="lblShy" 
+                                   Text="Don't be shy and always ask for help!" 
+                                   TextColor="black"/>
 
                         </StackLayout>
                     </Frame>

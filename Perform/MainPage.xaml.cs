@@ -3,6 +3,7 @@
 public partial class MainPage : ContentPage
 {
     public string CurrentName = String.Empty;
+    public bool beenBack = false;
     NetworkAccess accessType = Connectivity.Current.NetworkAccess;
 
     public MainPage()
@@ -28,6 +29,7 @@ public partial class MainPage : ContentPage
                 lblEmptyField.IsVisible = false;
 
                 Navigation.PushAsync(new DataPage(CurrentName));
+                beenBack = true;
             }
             else
             {
@@ -36,9 +38,6 @@ public partial class MainPage : ContentPage
         }
         else
         {
-            // If string is empty place a warning message
-            // SoftBlink(lblEmptyField, Color.FromArgb("1E1E1E"), Colors.Red, 2000, false);
-            // SoftBlink(lblEmptyField, Color.FromArgb("1E1E1E"), Colors.Green, 2000, true);
             DisplayAlert("Login", "Login field is empty, please input your workers login", "Got it!");
             lblEmptyField.IsVisible = true;
         }
@@ -58,16 +57,18 @@ public partial class MainPage : ContentPage
 
     private void EntryName_TextChanged(object sender, TextChangedEventArgs e)
     {
-        if (entryName.Text != null)
+        if (entryName.Text.Length != 0)
         {
             lblEmptyField.IsVisible = false;
             loadingUserData.IsVisible = true;
             loadingUserData.IsRunning = true;
+            lblSearching.IsVisible = true;
         }
         else
         {
             loadingUserData.IsVisible = false;
             loadingUserData.IsRunning = false;
+            lblSearching.IsVisible = false;
         }
 
     }
@@ -81,33 +82,16 @@ public partial class MainPage : ContentPage
 
         // Animation (fade in)
         await lblHello.FadeTo(1, 2000); // parameters: target opacity, duration (milliseconds)
+        if (beenBack)
+        {
+            {
+                entryName.Text = string.Empty;
+                loadingUserData.IsVisible = false;
+                loadingUserData.IsRunning = false;
+                lblSearching.IsVisible = false;
+            }
+        }
     }
-
-    //private static async Task SoftBlink(View ctrl, Color c1, Color c2, short CycleTime_ms, bool BkClr)
-    //{
-    //    var sw = new Stopwatch(); sw.Start();
-    //    short halfCycle = (short)Math.Round(CycleTime_ms * 0.5);
-    //    while (true)
-    //    {
-    //        await Task.Delay(1);
-    //        var n = sw.ElapsedMilliseconds % CycleTime_ms;
-    //        var per = Math.Abs(n - halfCycle) / (double)halfCycle;
-    //        var red = (c2.Red - c1.Red) * per + c1.Red;
-    //        var grn = (c2.Green - c1.Green) * per + c1.Green;
-    //        var blw = (c2.Blue - c1.Blue) * per + c1.Blue;
-    //        var clr = Color.FromRgb(red, grn, blw);
-    //        if (BkClr)
-    //        {
-    //            ctrl.BackgroundColor = clr;
-    //        }
-    //        else if (ctrl is Label label)
-    //        {
-    //            label.TextColor = clr;
-    //        }
-    //    }
-    //}
-
-
 
 }
 
