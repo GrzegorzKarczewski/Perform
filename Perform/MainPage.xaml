@@ -68,8 +68,13 @@
                            HorizontalTextAlignment="Center"
                            BackgroundColor="Transparent"/>
                     </Frame>
+                <Label x:Name="lblEmptyField" Text="Field is empty, provide worker login"
+                       TextColor="Black"
+                           IsVisible="false"
+                       HorizontalOptions="Center"
+                       FontSize="Medium"/>
 
-                    <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
+                <ActivityIndicator x:Name="loadingUserData" IsVisible="false"
                                HorizontalOptions="Center"
                                Color="Black"/>
 

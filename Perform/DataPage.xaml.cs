@@ -6,7 +6,7 @@ public partial class DataPage : ContentPage
 
     public string CurrentName = String.Empty;
     private CsvDataViewModel viewModel;
-    private int performance;
+
 
     public DataPage(string currentName)
     {
