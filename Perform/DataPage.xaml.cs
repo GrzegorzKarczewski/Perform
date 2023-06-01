@@ -6,6 +6,7 @@ public partial class DataPage : ContentPage
 
     public string CurrentName = String.Empty;
     private CsvDataViewModel viewModel;
+    private int performance;
 
     public DataPage(string currentName)
     {
@@ -21,13 +22,13 @@ public partial class DataPage : ContentPage
         if (IsUserFound())
         {
             // Here we are checking if worker had norm higher or equal than expected
-            Int32 score = LoadDataIntoTable();
-            await DisplayAlert("Performance", $"Your performance is : {score}", "OK");
+            int score = LoadDataIntoTable();
+            //await DisplayAlert("Performance", $"Your performance is : {score}", "OK");
             if (score >= 160)
             {
                 lblGoodJob.IsVisible = true;
                 lblShy.IsVisible = false;
-                frameSummary.BackgroundColor = Colors.LightGreen;
+                frameSummary.BackgroundColor = Color.FromArgb("0ef1c2");
             }
             else
             {
@@ -42,9 +43,8 @@ public partial class DataPage : ContentPage
             await Navigation.PopAsync();
         }
     }
-    private Int32 LoadDataIntoTable()
+    private int LoadDataIntoTable()
     {
-        Int32 performance = 0;
         string performanceValue = null;
 
         tableView.Root.Clear();
@@ -57,29 +57,35 @@ public partial class DataPage : ContentPage
             string totalcollies = null;
             string lastOrder = null;
 
+            // Create a flag variable to track if the current row belongs to the target user
+            bool isTargetUser = false;
+
             // Iterate over each column in the row
             foreach (var column in row)
             {
                 if (column.Key == "Naam_Medewerker" && column.Value.ToUpper() == CurrentName)
                 {
                     currentName = $"Name: {column.Value}";
+                    isTargetUser = true; // Set flag to true if the row belongs to the target user
                 }
-                else if (column.Key == "Colli_Gem_Colli_Per_Uur")
+                else if (column.Key == "Colli_Gem_Colli_Per_Uur" && isTargetUser)
                 {
+                    // Only assign performance value if the current row belongs to the target user
                     colliValue = $"Performance: {column.Value} colli/hr";
                     performanceValue = column.Value;
                 }
-                else if (column.Key == "Totaal_Colli_Gedaan")
+                else if (column.Key == "Totaal_Colli_Gedaan" && isTargetUser)
                 {
                     totalcollies = $"You've picked {column.Value} colli ";
                 }
-                else if (column.Key == "Tijd_Laatst_Gedane_Taak")
+                else if (column.Key == "Tijd_Laatst_Gedane_Taak" && isTargetUser)
                 {
                     lastOrder = column.Value;
                 }
             }
+
             // If all necessary data is found, create a new TableSection and add it to the table
-            if (currentName != null && colliValue != null && totalcollies != null && lastOrder != null)
+            if (isTargetUser && currentName != null && colliValue != null && totalcollies != null && lastOrder != null)
             {
                 var tableSection = new TableSection();
                 tableSection.Title = $"Your latest Performance: {lastOrder}";
@@ -93,8 +99,10 @@ public partial class DataPage : ContentPage
 
 
                 });
+
                 tableSection.Add(new TextCell
                 {
+
                     Text = colliValue,
                     TextColor = Colors.Black
                 });
@@ -105,20 +113,29 @@ public partial class DataPage : ContentPage
                 });
                 tableView.Root.Add(tableSection);
             }
+
         }
 
         btnRefresh.IsVisible = true;
 
         if (performanceValue != null)
         {
-            bool success = Int32.TryParse(performanceValue, out performance);
+            performanceValue = performanceValue.Trim();
+            bool success = Int32.TryParse(performanceValue, out int performance);
             if (!success)
             {
-                DisplayAlert("Problem", $"Problem with performance value: {performance}", "OK");
+                DisplayAlert("Problem", $"Problem with performance value: {performanceValue}", "OK");
+            }
+            else
+            {
+                return performance; // Return performance if parse is successful
             }
         }
-        return performance;
+
+        // Return 0 or a default value if performanceValue is null or could not be parsed
+        return 0;
     }
+
     private bool IsUserFound()
     {
         foreach (var row in viewModel.Rows)

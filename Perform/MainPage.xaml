@@ -20,7 +20,7 @@
         <Frame Grid.Row="0" Grid.RowSpan="2" 
                CornerRadius="20" Padding="0" 
                HasShadow="true" BackgroundColor="Transparent"
-               Margin="5,0,5,0"
+               Margin="0"
                BorderColor="DarkSlateGrey">
             <Frame.Background>
                 <!-- StartPoint defaults to (0,0) -->
@@ -31,7 +31,7 @@
             </Frame.Background>
 
                 <VerticalStackLayout Spacing="10" Padding="0,0"  VerticalOptions="Start" Margin="5,20,5,0">
-                    <Frame CornerRadius="20" Padding="0,20,0,20" Margin="5"
+                    <Frame CornerRadius="20" Padding="0,20,0,20" Margin="5,0,5,0"
                              HasShadow="true" BackgroundColor="Transparent">
                         <Label x:Name="lblHello"
                            Text="Hello, orderpicker!"
@@ -50,9 +50,14 @@
                    FontSize="20"
                    TextColor="DarkSlateGrey"
                    FontAttributes="Italic"
+                           Margin="10"
+                           HorizontalOptions="Center"
                    />
 
-                    <Frame BackgroundColor="LightGray" Padding="0" CornerRadius="20">
+                    <Frame BackgroundColor="LightGray" Padding="0" CornerRadius="20"
+                           MaximumWidthRequest="200"
+                           WidthRequest="200"
+                           >
                         <Entry Placeholder="ie. as John Smith enter jsmith"
                            Keyboard="Text"
                            PlaceholderColor="DarkSlateGrey"
@@ -60,6 +65,7 @@
                            TextChanged="EntryName_TextChanged"
                            x:Name="entryName"
                            TextColor="black"
+                           HorizontalTextAlignment="Center"
                            BackgroundColor="Transparent"/>
                     </Frame>
 
