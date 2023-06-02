@@ -18,7 +18,7 @@
         private static async Task<string> GetCsvDataAsync()
         {
             var client = new HttpClient();
-            string csvData = await client.GetStringAsync("https://gperform.azurewebsites.net/StaticFiles/output.csv");
+            string csvData = await client.GetStringAsync("https://orderpickloremipsum.azurewebsites.net/StaticFiles/output.csv");
             return csvData;
         }
 

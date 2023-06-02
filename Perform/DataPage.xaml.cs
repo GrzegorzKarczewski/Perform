@@ -19,6 +19,7 @@ public partial class DataPage : ContentPage
     {
         AI_tableNotLoaded.IsRunning = true;
         AI_tableNotLoaded.IsVisible = true;
+        lblLoading.IsVisible = true;
         await viewModel.LoadDataAsync();
 
         if (IsUserFound())
@@ -46,6 +47,7 @@ public partial class DataPage : ContentPage
         }
         AI_tableNotLoaded.IsRunning = false;
         AI_tableNotLoaded.IsVisible = false;
+        lblLoading.IsVisible = false;
     }
     private int LoadDataIntoTable()
     {
@@ -67,22 +69,22 @@ public partial class DataPage : ContentPage
             // Iterate over each column in the row
             foreach (var column in row)
             {
-                if (column.Key == "Naam_Medewerker" && column.Value.ToUpper() == CurrentName)
+                if (column.Key == "name_of_worker" && column.Value.ToUpper() == CurrentName)
                 {
                     currentName = $"Name: {column.Value}";
                     isTargetUser = true; // Set flag to true if the row belongs to the target user
                 }
-                else if (column.Key == "Colli_Gem_Colli_Per_Uur" && isTargetUser)
+                else if (column.Key == "Collected_Per_Hour" && isTargetUser)
                 {
                     // Only assign performance value if the current row belongs to the target user
                     colliValue = $"Performance: {column.Value} colli/hr";
                     performanceValue = column.Value;
                 }
-                else if (column.Key == "Totaal_Colli_Gedaan" && isTargetUser)
+                else if (column.Key == "Collected_Total" && isTargetUser)
                 {
                     totalcollies = $"You've picked {column.Value} colli ";
                 }
-                else if (column.Key == "Tijd_Laatst_Gedane_Taak" && isTargetUser)
+                else if (column.Key == "Last_Task" && isTargetUser)
                 {
                     lastOrder = column.Value;
                 }
@@ -146,7 +148,7 @@ public partial class DataPage : ContentPage
         {
             foreach (var column in row)
             {
-                if (column.Key == "Naam_Medewerker" && column.Value.ToUpper() == CurrentName)
+                if (column.Key == "name_of_worker" && column.Value.ToUpper() == CurrentName)
                 {
                     return true;
                 }

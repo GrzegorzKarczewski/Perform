@@ -75,13 +75,8 @@ public partial class MainPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        base.OnAppearing();
-
-        // Initial state (invisible)
-        lblHello.Opacity = 0;
-
-        // Animation (fade in)
-        await lblHello.FadeTo(1, 2000); // parameters: target opacity, duration (milliseconds)
+        // piggybacking this animation function to solve problem 
+        // TODO: make it smarter in the future
         if (beenBack)
         {
             {
@@ -91,6 +86,16 @@ public partial class MainPage : ContentPage
                 lblSearching.IsVisible = false;
             }
         }
+        //---------------------------------------------------------
+        // Animation part
+        base.OnAppearing();
+
+        // Initial state (invisible)
+        lblHello.Opacity = 0;
+
+        // Animation (fade in)
+        await lblHello.FadeTo(1, 2000); // parameters: target opacity, duration (milliseconds)
+
     }
 
 }

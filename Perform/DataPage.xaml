@@ -7,8 +7,8 @@
              >
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
-            <GradientStop Color="#FC0816" Offset="0.1" />
-            <GradientStop Color="white" Offset="1.0" />
+            <GradientStop Color="White" Offset="0.1" />
+            <GradientStop Color="{StaticResource Primary}" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>
     <Grid>
@@ -17,16 +17,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Frame Grid.Row="0" Grid.RowSpan="2" 
+        <Frame Grid.Row="0" Grid.RowSpan="1" 
                CornerRadius="20" Padding="0" 
                HasShadow="true" BackgroundColor="Transparent"
-               Margin="0" BorderColor="DarkSlateGrey">
-            <Frame.Background>
-                <LinearGradientBrush EndPoint="0,1">
-                    <GradientStop Color="White" Offset="0.7" />
-                    <GradientStop Color="#FC0816" Offset="1.0" />
-                </LinearGradientBrush>
-            </Frame.Background>
+               Margin="0" BorderColor="Transparent">
+     
 
             <ScrollView Grid.Row="0">
                 <VerticalStackLayout Spacing="20" Padding="10,0" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,80,0,0">
@@ -39,8 +34,8 @@
                         </TableView>
                     </Frame>
                     <ActivityIndicator x:Name="AI_tableNotLoaded" IsRunning="false" IsVisible="false"
-                                       Color="#FC0816"/>
-                    <Label x:Name ="lblSearching" Text="Loading.. Please wait" 
+                                       Color="{StaticResource Primary}"/>
+                    <Label x:Name ="lblLoading" Text="Loading.. Please wait" 
                            HorizontalOptions="Center" 
                            IsVisible="false"
                            FontSize="Medium"
@@ -77,14 +72,16 @@
                     <Button x:Name="btnRefresh" Text="Refresh" Clicked="ButtonRefresh_Clicked"
                                 BorderColor="LightGreen" BorderWidth=".4" IsVisible="false"
                                 HorizontalOptions="Center"
-                                BackgroundColor="#FC0816"
+                                BackgroundColor="{StaticResource Primary}"
                                 TextColor="White"/> 
 
                 </VerticalStackLayout>
             </ScrollView>
         </Frame>
-        <Image Grid.Row="1" Source="Resources/Splash/splash.svg"
-               VerticalOptions="End" HorizontalOptions="Center"/>
+        <Image Grid.Row="1" Source="Resources/Images/loremipsum.png"
+               HeightRequest="200" WidthRequest="200"
+               VerticalOptions="End" HorizontalOptions="Center" BackgroundColor="Transparent"
+               Margin="0,0,0,20"/>
     </Grid>
 
 </ContentPage>
