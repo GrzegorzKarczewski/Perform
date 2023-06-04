@@ -77,12 +77,12 @@ public partial class DataPage : ContentPage
                 else if (column.Key == "Collected_Per_Hour" && isTargetUser)
                 {
                     // Only assign performance value if the current row belongs to the target user
-                    colliValue = $"Performance: {column.Value} colli/hr";
+                    colliValue = $"Performance: {column.Value} products/hr";
                     performanceValue = column.Value;
                 }
                 else if (column.Key == "Collected_Total" && isTargetUser)
                 {
-                    totalcollies = $"You've picked {column.Value} colli ";
+                    totalcollies = $"You've picked {column.Value} products in total ";
                 }
                 else if (column.Key == "Last_Task" && isTargetUser)
                 {

@@ -5,18 +5,7 @@
              Title="Performer v0.1"
              
              >
-    <Shell.TitleView>
-        <HorizontalStackLayout VerticalOptions="Fill">
-            <Label
-              Text="Welcome to MAUI"
-              FontFamily="Strande2"
-              TextColor="White"
-              VerticalTextAlignment="Center"
-              VerticalOptions="CenterAndExpand"
-              HeightRequest="50"
-              FontSize="Medium" />
-        </HorizontalStackLayout>
-    </Shell.TitleView>
+    
     <ContentPage.Background>
         <LinearGradientBrush EndPoint="0,1">
             <GradientStop Color="White" Offset="0.1" />
@@ -39,8 +28,9 @@
                 <VerticalStackLayout Spacing="10" Padding="0,0"  VerticalOptions="Start" Margin="5,20,5,0">
                     <Frame CornerRadius="20" Padding="0,20,0,20" Margin="5,0,5,0"
                              HasShadow="true" BackgroundColor="Transparent">
+                    <HorizontalStackLayout>
                         <Label x:Name="lblHello"
-                           Text="Hello, orderpicker!"
+                           Text="Hello "
                            SemanticProperties.HeadingLevel="Level1"
                            FontSize="32"
                            HorizontalOptions="Center"
@@ -49,6 +39,18 @@
                            FontAttributes="Bold"
                            Padding="0,0,0,0"
                         />
+                        <Label x:Name="lblAssignedName"
+                           Text="{Binding Source={x:Reference entryName}, Path=Text, Mode=OneWay} "
+                           SemanticProperties.HeadingLevel="Level1"
+                           FontSize="32"
+                           HorizontalOptions="Center"
+                           VerticalOptions="StartAndExpand"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Padding="0,0,0,0"
+                        />
+                    </HorizontalStackLayout>
+                      
                     </Frame>
                     <Label x:Name="lblEnterLogin" Text="Enter your login"
                    FontSize="20"
@@ -96,7 +98,7 @@
         </Frame>
 
         <Image Grid.Row="1" Source="Resources/Images/loremipsum.png"
-               HeightRequest="200" WidthRequest="200"
+               HeightRequest="180" WidthRequest="200"
                VerticalOptions="End" HorizontalOptions="Center" BackgroundColor="Transparent"
                Margin="0,0,0,20"/>
     </Grid>

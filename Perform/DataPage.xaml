@@ -79,7 +79,7 @@
             </ScrollView>
         </Frame>
         <Image Grid.Row="1" Source="Resources/Images/loremipsum.png"
-               HeightRequest="200" WidthRequest="200"
+               HeightRequest="180" WidthRequest="200"
                VerticalOptions="End" HorizontalOptions="Center" BackgroundColor="Transparent"
                Margin="0,0,0,20"/>
     </Grid>

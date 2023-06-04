@@ -11,5 +11,17 @@
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label
+              Text="Welcome to MAUI"
+              FontFamily="Strande2"
+              TextColor="White"
+              VerticalTextAlignment="Center"
+              VerticalOptions="CenterAndExpand"
+              HeightRequest="50"
+              FontSize="Medium" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
 
 </Shell>
